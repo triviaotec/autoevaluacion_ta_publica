@@ -85,7 +85,15 @@ for r in ITEMS:               # primera aparición = orden por ID ascendente
         ORDER_MAT.append(m); _seen.add(m)
 
 # Pesos numéricos de las materias (descarta celdas con texto)
-MAT_PESO = df.groupby("Materia")["Peso Materia (%)"].apply(lambda s: pd.to_numeric(s, errors="coerce").dropna().iloc[0] if not s.empty else pd.NA).to_dict()
+def _first_numeric(series: pd.Series):
+    nums = pd.to_numeric(series, errors="coerce").dropna()
+    return nums.iloc[0] if not nums.empty else pd.NA
+
+MAT_PESO = (
+    df.groupby("Materia")["Peso Materia (%)"]
+      .apply(_first_numeric)
+      .to_dict()
+)
 
 # Indicadores específicos
 IND_ESP = json.loads(P_ESP.read_text(encoding="utf-8"))
