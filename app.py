@@ -70,12 +70,18 @@ st.markdown(
 )
 
 # ──────────────── Carga y orden de la estructura ────────────────────────────
-df = pd.read_json(P_ITEMS)
-df["Materia"] = df["Materia"].replace(
-    "Actos y resoluciones que tengas efectos sobre terceros",
-    "Actos y resoluciones con efectos sobre terceros",
-)
-df = df.sort_values("ID")
+@st.cache_data(show_spinner=False)
+def load_structures():
+    df = pd.read_json(P_ITEMS)
+    df["Materia"] = df["Materia"].replace(
+        "Actos y resoluciones que tengas efectos sobre terceros",
+        "Actos y resoluciones con efectos sobre terceros",
+    )
+    df = df.sort_values("ID")
+    ind_esp = json.loads(P_ESP.read_text(encoding="utf-8"))
+    return df, ind_esp
+
+df, IND_ESP = load_structures()
 ITEMS = df.to_dict("records")
 TOTAL = len(ITEMS)
 
@@ -141,17 +147,16 @@ def _puntaje_item(r: ItemR) -> float | None:
     )
     return round(gen_score * 0.75 + esp_score * 0.25, 1)
 
-def _calcular():
-    item_sc = {it: _puntaje_item(r) for it, r in st.session_state.answers.items()}
+@st.cache_data(show_spinner=False, hash_funcs={namedtuple: id})
+def calcular(item_answers: dict):
+    item_sc = {it: _puntaje_item(r) for it, r in item_answers.items()}
     mat_sc = {}
     for m in ORDER_MAT:
         nums = [item_sc[i] for i in MAT_TO_ITEMS[m] if item_sc.get(i) is not None]
         mat_sc[m] = None if not nums else round(sum(nums) / len(nums), 1)
     pesos = {m: p for m, p in MAT_PESO.items() if pd.notna(p) and mat_sc.get(m) is not None}
     if pesos:
-        glob = round(
-            sum(mat_sc[m] * pesos[m] for m in pesos) / sum(pesos.values()), 1
-        )
+        glob = round(sum(mat_sc[m] * pesos[m] for m in pesos) / sum(pesos.values()), 1)
     else:
         vals = [v for v in mat_sc.values() if v is not None]
         glob = round(sum(vals) / len(vals), 1) if vals else 0
@@ -174,51 +179,56 @@ ESC_D = {
     5: "Sección/vínculo existe pero no funciona / no muestra datos",
 }
 esc_idx = _safe_idx(list(ESC_D), prev.scenario if prev else None)
-esc = st.radio(
-    "Escenario:",
-    list(ESC_D),
-    format_func=lambda v: f"Escenario {v}: {ESC_D[v]}",
-    index=esc_idx,
-    key=key("esc"),
-)
+with st.form(key=f"form_{it}"):
+    esc = st.radio(
+        "Escenario:",
+        list(ESC_D),
+        format_func=lambda v: f"Escenario {v}: {ESC_D[v]}",
+        index=esc_idx,
+        key=key("esc"),
+    )
 
-# Indicadores generales y específicos
-disp = act = comp = None
-spec_vals: list[str] = []
+    disp = act = comp = None
+    spec_vals: list[str] = []
 
-if esc == 1:
-    idx_disp = _safe_idx(["Sí", "No"], prev.gen[0] if prev else None)
-    disp = st.radio("1⃣ ¿Información disponible?", ["Sí", "No"], index=idx_disp, key=key("disp"))
-    if disp == "Sí":
-        idx_act = _safe_idx(["Sí", "No"], prev.gen[1] if prev else None)
-        act = st.radio("2⃣ ¿Información actualizada?", ["Sí", "No"], index=idx_act, key=key("act"))
-        if act == "Sí":
-            opts = ["Sí", "No", "No es posible determinarlo"]
-            idx_comp = _safe_idx(opts, prev.gen[2] if (prev and len(prev.gen) > 2) else None)
-            comp = st.radio("3⃣ ¿Información completa?", opts, index=idx_comp, key=key("comp"))
-    if disp == act == "Sí" and comp is not None:
-        lista = IND_ESP.get(f"{mat} || {it}", [])
-        if lista:
-            st.subheader("Indicadores específicos")
-        for i, txt in enumerate(lista):
-            radios = ["Sí", "No", "No aplica"]
-            default = radios.index(prev.spec[i]) if (prev and i < len(prev.spec)) else 0
-            spec_vals.append(st.radio(txt, radios, index=default, key=key(f"spec{i}")))
+    if esc == 1:
+        idx_disp = _safe_idx(["Sí", "No"], prev.gen[0] if prev else None)
+        disp = st.radio("1⃣ ¿Información disponible?", ["Sí", "No"],
+                        index=idx_disp, key=key("disp"))
 
-# ───────── Botón Guardar ────────────────────────────────────────────────────
-def _valid_inputs() -> bool:
-    if esc != 1:
-        return True
-    if disp is None:
-        return False
-    if disp == "No":
-        return True
-    if act is None:
-        return False
-    if act == "No":
-        return True
-    return comp is not None
+        if disp == "Sí":
+            idx_act = _safe_idx(["Sí", "No"], prev.gen[1] if prev else None)
+            act = st.radio("2⃣ ¿Información actualizada?", ["Sí", "No"],
+                           index=idx_act, key=key("act"))
 
+            if act == "Sí":
+                opts = ["Sí", "No", "No es posible determinarlo"]
+                idx_comp = _safe_idx(opts,
+                                     prev.gen[2] if (prev and len(prev.gen) > 2) else None)
+                comp = st.radio("3⃣ ¿Información completa?", opts,
+                                index=idx_comp, key=key("comp"))
+
+        if disp == act == "Sí" and comp is not None:
+            lista = IND_ESP.get(f"{mat} || {it}", [])
+            if lista:
+                st.subheader("Indicadores específicos")
+            for i, txt in enumerate(lista):
+                radios = ["Sí", "No", "No aplica"]
+                default = radios.index(prev.spec[i]) if (prev and i < len(prev.spec)) else 0
+                spec_vals.append(
+                    st.radio(txt, radios, index=default, key=key(f"spec{i}"))
+                )
+
+    # Botón dentro del formulario
+    submitted = st.form_submit_button("💾 Guardar ítem")
+
+# ─── Manejamos el guardado fuera del `with` ───
+if submitted:
+    if not _valid_inputs():
+        st.warning("Completa los indicadores antes de guardar.")
+    else:
+        st.session_state.answers[it] = ItemR(esc, (disp, act, comp), spec_vals)
+        st.success("✔ Ítem guardado")
 if st.button("Guardar ítem"):
     if not _valid_inputs():
         st.warning("Completa los indicadores antes de guardar.")
@@ -332,7 +342,9 @@ org_in  = st.sidebar.text_input("Nombre organismo")
 eval_in = st.sidebar.text_input("Evaluador(a)")
 
 if st.sidebar.button("Calcular resultados"):
-    st.session_state.it_sc, st.session_state.mat_sc, st.session_state.glob_sc = _calcular()
+    st.session_state.it_sc, st.session_state.mat_sc, st.session_state.glob_sc = calcular(
+    st.session_state.answers
+)
     st.sidebar.metric("Cumplimiento global", f"{st.session_state.glob_sc:.1f} %")
 
 st.sidebar.markdown("---")
