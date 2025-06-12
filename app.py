@@ -57,15 +57,17 @@ def _logo64(p: Path) -> str:
     return f"data:image/{p.suffix.lstrip('.')};base64," \
            f"{base64.b64encode(p.read_bytes()).decode()}"
 
-st.markdown(
-    f"""
-<style>
-#MainMenu, header, footer{{visibility:hidden}}
-#logo{{position:fixed;top:8px;right:18px;z-index:10}}
-</style>
-<div id="logo"><img src="{_logo64(P_LOGO)}" width="140"></div>
-""",
-    unsafe_allow_html=True,
+ st.markdown(
+     f"""
+ <style>
+ #MainMenu, header, footer{{visibility:hidden}}
+ #logo{{position:fixed;top:8px;right:18px;z-index:10}}
+ </style>
+ <div id="logo"><img src="{_logo64(P_LOGO)}" width="140"></div>
+ """,
+-    unsafe_allow_html=True,
++    unsafe_allow_html=True,
++)
 
 # ──────────────── Carga y orden de la estructura ────────────────────────────
 df = pd.read_json(P_ITEMS)
