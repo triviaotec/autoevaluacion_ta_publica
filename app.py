@@ -26,6 +26,9 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls, qn
 
+# ────────── Compatibilidad con versiones de Streamlit ──────────
+_safe_rerun = lambda: (st.rerun if hasattr(st, "rerun") else st.experimental_rerun)()
+
 # ──────────────────────── RUTAS ──────────────────────────────────────────────
 BASE    = Path(__file__).resolve().parent
 P_ITEMS = BASE / "estructura_materias_items.json"
@@ -228,13 +231,13 @@ c1, c2, c3 = st.columns(3)
 with c1:
     if st.session_state.idx > 0 and st.button("⟵ Anterior"):
         st.session_state.idx -= 1
-        st.experimental_rerun()
+        _safe_rerun()
 with c2:
     st.markdown(f"**Ítem {st.session_state.idx + 1} / {TOTAL}**")
 with c3:
     if st.session_state.idx < TOTAL - 1 and st.button("Siguiente ⟶"):
         st.session_state.idx += 1
-        st.experimental_rerun()
+        _safe_rerun()
 
 # ───────────────────── Exportar Word ─────────────────────────────────────────
 def _tabla(doc: Document, headers: list[str], rows: list[tuple[str, str]]):
