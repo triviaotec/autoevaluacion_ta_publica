@@ -13,24 +13,27 @@ import pandas as pd
 import streamlit as st
 from docx import Document
 from docx.shared import Pt, Cm, RGBColor
-from docx.enum.text   import WD_ALIGN_PARAGRAPH
-from docx.enum.table  import WD_TABLE_ALIGNMENT
-from docx.oxml import parse_xml
+from docx.enum.text  import WD_ALIGN_PARAGRAPH
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.oxml  import parse_xml
 from docx.oxml.ns import nsdecls, qn
 
-# ────────── Compatibilidad con versiones de Streamlit ──────────
+# ───────── Compatibilidad con Streamlit 1.x / 2.x ─────────
 _safe_rerun = lambda: (st.rerun if hasattr(st, "rerun") else st.experimental_rerun)()
 
-# ──────────────────────── RUTAS ──────────────────────────────────────────────
+# ──────────────────────── RUTAS ───────────────────────────
 BASE = Path(__file__).resolve().parent
 P_ITEMS = BASE / "estructura_materias_items.json"
 P_ESP   = BASE / "estructura_indicadores_especificos.json"
 P_DOCX  = BASE / "plantilla.docx"
 
 # Logo
-P_LOGO = next((BASE / f"TRIVIA{ext}" for ext in (".png", ".jpeg") if (BASE / f"TRIVIA{ext}").exists()), None)
+P_LOGO = next(
+    (BASE / f"TRIVIA{ext}" for ext in (".png", ".jpeg") if (BASE / f"TRIVIA{ext}").exists()),
+    None
+)
 
-# ─────────────── CONFIGURACIÓN DE STREAMLIT ─────────────────────────────────
+# ───────────── Configuración de Streamlit ─────────────────
 st.set_page_config(
     page_title="Autoevaluación Transparencia Activa",
     layout="wide",
@@ -53,19 +56,14 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ──────────────── Carga y orden de la estructura ────────────────────────────
-@st.cache_data(show_spinner=False)
-def load_structures():
-    df = pd.read_json(P_ITEMS)
-    df["Materia"] = df["Materia"].replace(
-        "Actos y resoluciones que tengas efectos sobre terceros",
-        "Actos y resoluciones con efectos sobre terceros",
-    ).astype(str)
-    df = df.sort_values("ID")
-    ind_esp = json.loads(P_ESP.read_text(encoding="utf-8"))
-    return df, ind_esp
+# ───────────── Carga de estructura ────────────────────────
+df = pd.read_json(P_ITEMS)
+df["Materia"] = df["Materia"].replace(
+    "Actos y resoluciones que tengas efectos sobre terceros",
+    "Actos y resoluciones con efectos sobre terceros",
+)
+df = df.sort_values("ID")
 
-df, IND_ESP = load_structures()
 ITEMS = df.to_dict("records")
 TOTAL = len(ITEMS)
 
@@ -74,21 +72,22 @@ MAT_TO_ITEMS = defaultdict(list)
 for r in ITEMS:
     MAT_TO_ITEMS[r["Materia"].strip()].append(r["Ítem"])
 
-# Orden de materias
 ORDER_MAT = []
-_seen=set()
+_seen = set()
 for r in ITEMS:
-    m=r["Materia"].strip()
+    m = r["Materia"].strip()
     if m not in _seen:
-        ORDER_MAT.append(m); _seen.add(m)
+        ORDER_MAT.append(m)
+        _seen.add(m)
 
 def _num_first(s: pd.Series):
     s = pd.to_numeric(s, errors="coerce").dropna()
     return s.iloc[0] if not s.empty else pd.NA
 
 MAT_PESO = df.groupby("Materia")["Peso Materia (%)"].apply(_num_first).to_dict()
+IND_ESP  = json.loads(P_ESP.read_text(encoding="utf-8"))
 
-# ──────────────────────── Estado de sesión ──────────────────────────────────
+# ───────────── Estado de sesión ───────────────────────────
 ItemR = namedtuple("ItemR", "scenario gen spec")
 st.session_state.setdefault("idx", 0)
 st.session_state.setdefault("answers", {})
@@ -106,176 +105,220 @@ def _safe_idx(options, value, default=0):
     except (ValueError, TypeError):
         return default
 
+# ───────────── Puntajes ───────────────────────────────────
 def _puntaje_item(r: ItemR) -> float | None:
     if r.scenario in (2, 3):
         return None
     if r.scenario in (4, 5):
         return 0
-    g_vals=[VAL_GEN[v] for v in r.gen if v is not None]
-    if len(g_vals)<3:
+    g_vals = [VAL_GEN[v] for v in r.gen if v is not None]
+    if len(g_vals) < 3:
         return None
-    gen_score=min(g_vals)
-    esp=[v for v in r.spec if v!="No aplica"]
-    esp_score=100 if not esp else round(sum(v=="Sí" for v in esp)/len(esp)*100)
-    return round(gen_score*0.75+esp_score*0.25,1)
+    gen_score = min(g_vals)
+    esp = [v for v in r.spec if v != "No aplica"]
+    esp_score = 100 if not esp else round(sum(v == "Sí" for v in esp) / len(esp) * 100)
+    return round(gen_score * 0.75 + esp_score * 0.25, 1)
 
-@st.cache_data(show_spinner=False, hash_funcs={namedtuple: id})
-def calcular(ans: dict):
-    item_sc={it:_puntaje_item(r) for it,r in ans.items()}
-    mat_sc={}
+def _calcular():
+    item_sc = {it: _puntaje_item(r) for it, r in st.session_state.answers.items()}
+    mat_sc  = {}
     for m in ORDER_MAT:
-        nums=[item_sc[i] for i in MAT_TO_ITEMS[m] if item_sc.get(i) is not None]
-        mat_sc[m]=None if not nums else round(sum(nums)/len(nums),1)
-    pesos={m:p for m,p in MAT_PESO.items() if pd.notna(p) and mat_sc.get(m) is not None}
+        nums = [item_sc[i] for i in MAT_TO_ITEMS[m] if item_sc.get(i) is not None]
+        mat_sc[m] = None if not nums else round(sum(nums)/len(nums), 1)
+    pesos = {m:p for m,p in MAT_PESO.items() if pd.notna(p) and mat_sc.get(m) is not None}
     if pesos:
-        glob=round(sum(mat_sc[m]*pesos[m] for m in pesos)/sum(pesos.values()),1)
+        glob = round(sum(mat_sc[m]*pesos[m] for m in pesos) / sum(pesos.values()), 1)
     else:
-        vals=[v for v in mat_sc.values() if v is not None]
-        glob=round(sum(vals)/len(vals),1) if vals else 0
+        vals = [v for v in mat_sc.values() if v is not None]
+        glob = round(sum(vals)/len(vals), 1) if vals else 0
     return item_sc, mat_sc, glob
 
 # ───────── Validación antes de guardar ─────────
 def _valid_inputs() -> bool:
-    if esc!=1: return True
-    if disp is None: return False
-    if disp=="No":   return True
-    if act  is None: return False
-    if act=="No":    return True
+    if esc != 1:          # 2-5
+        return True
+    if disp is None:      # no respondió primera pregunta
+        return False
+    if disp == "No":
+        return True
+    if act is None:
+        return False
+    if act == "No":
+        return True
     return comp is not None
 
-# ─────────────── Pantalla de evaluación ────────────────────────────────────
-cur=ITEMS[st.session_state.idx]
+# ───────────── Pantalla de evaluación ───────────
+cur = ITEMS[st.session_state.idx]
 mat, it = cur["Materia"].strip(), cur["Ítem"]
+
 st.title("Autoevaluación Transparencia Activa")
 st.markdown(f"**Materia:** {mat}")
 st.markdown(f"**Ítem:** {it}")
-prev=st.session_state.answers.get(it)
-key=lambda s:f"{it}::{s}"
 
-ESC_D={1:"Organismo presenta sección con antecedentes",
-       2:"Organismo indica no tener antecedentes / no aplica",
-       3:"No hay sección pero no hay evidencia de infracción",
-       4:"No hay sección y sí hay evidencia de información faltante",
-       5:"Sección/vínculo existe pero no funciona / no muestra datos"}
+prev = st.session_state.answers.get(it)
+key  = lambda s: f"{it}::{s}"
 
-esc_idx=_safe_idx(list(ESC_D), prev.scenario if prev else None)
+ESC_D = {
+    1: "Organismo presenta sección con antecedentes",
+    2: "Organismo indica no tener antecedentes / no aplica",
+    3: "No hay sección pero no hay evidencia de infracción",
+    4: "No hay sección y sí hay evidencia de información faltante",
+    5: "Sección/vínculo existe pero no funciona / no muestra datos",
+}
+esc_idx = _safe_idx(list(ESC_D), prev.scenario if prev else None)
 
 with st.form(key=f"form_{it}"):
-    esc=st.radio("Escenario:", list(ESC_D),
-                 format_func=lambda v:f"Escenario {v}: {ESC_D[v]}",
-                 index=esc_idx, key=key("esc"))
+    esc = st.radio(
+        "Escenario:", list(ESC_D),
+        format_func=lambda v: f"Escenario {v}: {ESC_D[v]}",
+        index=esc_idx, key=key("esc"),
+    )
 
-    disp=act=comp=None
-    spec_vals=[]
+    disp = act = comp = None
+    spec_vals: list[str] = []
 
-    if esc==1:
-        disp=st.radio("1⃣ ¿Información disponible?",["Sí","No"],
-                      index=_safe_idx(["Sí","No"], prev.gen[0] if prev else None),
-                      key=key("disp"))
-        if disp=="Sí":
-            act=st.radio("2⃣ ¿Información actualizada?",["Sí","No"],
-                         index=_safe_idx(["Sí","No"], prev.gen[1] if prev else None),
-                         key=key("act"))
-            if act=="Sí":
-                opts=["Sí","No","No es posible determinarlo"]
-                comp=st.radio("3⃣ ¿Información completa?", opts,
-                              index=_safe_idx(opts, prev.gen[2] if (prev and len(prev.gen)>2) else None),
-                              key=key("comp"))
-        if disp==act=="Sí" and comp is not None:
-            lista=IND_ESP.get(f"{mat} || {it}", [])
-            if lista: st.subheader("Indicadores específicos")
-            for i,txt in enumerate(lista):
-                radios=["Sí","No","No aplica"]
-                default=radios.index(prev.spec[i]) if (prev and i<len(prev.spec)) else 0
-                spec_vals.append(st.radio(txt, radios, index=default, key=key(f"spec{i}")))
+    if esc == 1:
+        disp = st.radio(
+            "1⃣ ¿Información disponible?", ["Sí", "No"],
+            index=_safe_idx(["Sí","No"], prev.gen[0] if prev else None),
+            key=key("disp")
+        )
+        if disp == "Sí":
+            act = st.radio(
+                "2⃣ ¿Información actualizada?", ["Sí", "No"],
+                index=_safe_idx(["Sí","No"], prev.gen[1] if prev else None),
+                key=key("act")
+            )
+            if act == "Sí":
+                opts = ["Sí", "No", "No es posible determinarlo"]
+                comp = st.radio(
+                    "3⃣ ¿Información completa?", opts,
+                    index=_safe_idx(opts, prev.gen[2] if (prev and len(prev.gen)>2) else None),
+                    key=key("comp")
+                )
 
-    submitted=st.form_submit_button("💾 Guardar ítem")
+        # Indicadores específicos
+        if disp == act == "Sí" and comp is not None:
+            lista = IND_ESP.get(f"{mat} || {it}", [])
+            if lista:
+                st.subheader("Indicadores específicos")
+            for i, txt in enumerate(lista):
+                radios  = ["Sí", "No", "No aplica"]
+                default = radios.index(prev.spec[i]) if (prev and i < len(prev.spec)) else 0
+                spec_vals.append(
+                    st.radio(txt, radios, index=default, key=key(f"spec{i}"))
+                )
+
+    submitted = st.form_submit_button("💾 Guardar ítem")
 
 if submitted:
     if not _valid_inputs():
         st.warning("Completa los indicadores antes de guardar.")
     else:
-        st.session_state.answers[it]=ItemR(esc,(disp,act,comp),spec_vals)
+        st.session_state.answers[it] = ItemR(esc, (disp, act, comp), spec_vals)
         st.success("✔ Ítem guardado")
 
-# ───────── Navegación ───────────────────────────────────────────────────────
-c1,c2,c3=st.columns(3)
+# ───────── Navegación ───────────────────────────
+c1, c2, c3 = st.columns(3)
 with c1:
-    if st.session_state.idx>0 and st.button("⟵ Anterior"):
-        st.session_state.idx-=1;_safe_rerun()
+    if st.session_state.idx > 0 and st.button("⟵ Anterior"):
+        st.session_state.idx -= 1; _safe_rerun()
 with c2:
-    st.markdown(f"**Ítem {st.session_state.idx+1} / {TOTAL}**")
+    st.markdown(f"**Ítem {st.session_state.idx + 1} / {TOTAL}**")
 with c3:
-    if st.session_state.idx<TOTAL-1 and st.button("Siguiente ⟶"):
-        st.session_state.idx+=1;_safe_rerun()
+    if st.session_state.idx < TOTAL - 1 and st.button("Siguiente ⟶"):
+        st.session_state.idx += 1; _safe_rerun()
 
-# ───────────────────── Exportar Word ─────────────────────────────────────────
+# ───────── Tabla Word ───────────────────────────
 def _tabla(doc, headers, rows):
-    tbl=doc.add_table(rows=1+len(rows), cols=len(headers))
-    tbl.alignment=WD_TABLE_ALIGNMENT.CENTER
+    tbl = doc.add_table(rows=1+len(rows), cols=len(headers))
+    tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+
     # encabezados
     for i,h in enumerate(headers):
-        cell=tbl.rows[0].cells[i]
-        cell.text=h
-        cell.paragraphs[0].alignment=WD_ALIGN_PARAGRAPH.CENTER
+        cell = tbl.rows[0].cells[i]
+        cell.text = h
+        cell.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
         for r in cell.paragraphs[0].runs:
-            r.bold=True; r.font.color.rgb=RGBColor(255,255,255)
-        cell._tc.get_or_add_tcPr().append(parse_xml(f"<w:shd {nsdecls('w')} w:fill='000000'/>"))
+            r.bold = True; r.font.color.rgb = RGBColor(255,255,255)
+        cell._tc.get_or_add_tcPr().append(
+            parse_xml(f"<w:shd {nsdecls('w')} w:fill='000000'/>"))
+
     # filas
     for r_i,(k,v) in enumerate(rows,1):
-        tbl.rows[r_i].cells[0].text=str(k)
-        tbl.rows[r_i].cells[1].text="No aplica" if v is None else f"{v:.1f}"
-        tbl.rows[r_i].cells[1].paragraphs[0].alignment=WD_ALIGN_PARAGRAPH.CENTER
+        tbl.rows[r_i].cells[0].text = str(k)
+
+        if v is None:                      # sin puntaje
+            if isinstance(k,str) and k in st.session_state.answers:
+                scen = st.session_state.answers[k].scenario
+                txt  = "No aplica" if scen in (2,3) else "No se evalúa"
+            else:
+                txt = "No se evalúa"
+            tbl.rows[r_i].cells[1].text = txt
+        else:
+            tbl.rows[r_i].cells[1].text = f"{v:.1f}"
+
+        tbl.rows[r_i].cells[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
     # bordes
     for row in tbl.rows:
         for cell in row.cells:
-            tcPr=cell._tc.get_or_add_tcPr()
+            tcPr = cell._tc.get_or_add_tcPr()
             for side in ("top","left","bottom","right"):
                 if tcPr.find(qn(f"w:{side}")) is None:
                     tcPr.append(parse_xml(
                         f"<w:{side} w:val=\"single\" w:sz=\"4\" w:color=\"000000\" {nsdecls('w')} />"))
 
+# ───────── Exportar Word ────────────────────────
 def _export(mat_sc,item_sc,glob,infr,org,evalua):
-    doc=Document(str(P_DOCX))
+    doc = Document(str(P_DOCX))
     for s in doc.sections:
-        s.top_margin=s.bottom_margin=Cm(2.5); s.left_margin=s.right_margin=Cm(2.0)
-    p=doc.paragraphs[0] if doc.paragraphs else doc.add_paragraph()
-    p.clear(); p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+        s.top_margin = s.bottom_margin = Cm(2.5)
+        s.left_margin = s.right_margin = Cm(2.0)
+
+    p = doc.paragraphs[0] if doc.paragraphs else doc.add_paragraph()
+    p.clear(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.add_run("REPORTE DE AUTOEVALUACIÓN DE TRANSPARENCIA ACTIVA").bold=True; p.runs[0].font.size=Pt(16)
+
     doc.add_paragraph(f"Organismo: {org}")
     doc.add_paragraph(f"Fecha: {datetime.now():%d-%m-%Y}")
     doc.add_paragraph(f"Evaluador(a): {evalua}")
     doc.add_paragraph(f"Cumplimiento TA global observado: {glob:.1f} %")
+
     doc.add_paragraph()
-    h1=doc.add_paragraph(); h1.alignment=WD_ALIGN_PARAGRAPH.CENTER
+    h1 = doc.add_paragraph(); h1.alignment = WD_ALIGN_PARAGRAPH.CENTER
     h1.add_run("Puntaje por materias").bold=True; h1.runs[0].font.size=Pt(13)
-    _tabla(doc,["Materia","%"],[(m,mat_sc[m]) for m in ORDER_MAT])
+    _tabla(doc, ["Materia","%"], [(m,mat_sc[m]) for m in ORDER_MAT])
+
     doc.add_paragraph()
-    h2=doc.add_paragraph(); h2.alignment=WD_ALIGN_PARAGRAPH.CENTER
+    h2 = doc.add_paragraph(); h2.alignment = WD_ALIGN_PARAGRAPH.CENTER
     h2.add_run("Puntaje por Ítems").bold=True; h2.runs[0].font.size=Pt(13)
-    _tabla(doc,["Ítem","%"],[(it,item_sc.get(it)) for it in ITEM_TO_MAT])
+    _tabla(doc, ["Ítem","%"], [(it,item_sc.get(it)) for it in ITEM_TO_MAT])
+
     if infr:
         doc.add_paragraph()
-        h3=doc.add_paragraph(); h3.alignment=WD_ALIGN_PARAGRAPH.CENTER
+        h3 = doc.add_paragraph(); h3.alignment = WD_ALIGN_PARAGRAPH.CENTER
         h3.add_run("Incumplimientos detectados").bold=True; h3.runs[0].font.size=Pt(13)
         for m in ORDER_MAT:
             if m not in infr: continue
-            pm=doc.add_paragraph(); pm.add_run(m).bold=True
+            doc.add_paragraph().add_run(m).bold=True
             for it,lst in infr[m].items():
-                pit=doc.add_paragraph(f"  {it}"); pit.runs[0].bold=True
+                p_it = doc.add_paragraph(f"  {it}")
+                p_it.runs[0].bold=True
                 for i,txt in enumerate(lst,1):
                     doc.add_paragraph(f"    {i}. {txt}")
-    fname=f"Reporte_TA_{org}_{datetime.now():%Y%m%d}.docx"
-    doc.save(BASE/fname); return fname
 
-# ───────────────────────── Sidebar ──────────────────────────────────────────
+    fname = f"Reporte_TA_{org}_{datetime.now():%Y%m%d}.docx"
+    doc.save(BASE / fname)
+    return fname
+
+# ─────────────────────── Sidebar ─────────────────────────
 st.sidebar.header("Resultados")
-org_in=st.sidebar.text_input("Nombre organismo")
-eval_in=st.sidebar.text_input("Evaluador(a)")
+org_in  = st.sidebar.text_input("Nombre organismo")
+eval_in = st.sidebar.text_input("Evaluador(a)")
 
 if st.sidebar.button("Calcular resultados"):
-    st.session_state.it_sc,st.session_state.mat_sc,st.session_state.glob_sc=calcular(
-        st.session_state.answers)
+    st.session_state.it_sc, st.session_state.mat_sc, st.session_state.glob_sc = _calcular()
     st.sidebar.metric("Cumplimiento global", f"{st.session_state.glob_sc:.1f} %")
 
 st.sidebar.markdown("---")
@@ -283,23 +326,21 @@ if st.sidebar.button("Exportar Word") and org_in and eval_in:
     if "mat_sc" not in st.session_state:
         st.sidebar.warning("Calcula primero los resultados.")
     else:
-        infr=defaultdict(lambda:defaultdict(list))
+        infr = defaultdict(lambda:defaultdict(list))
         for it,ans in st.session_state.answers.items():
-            mat=ITEM_TO_MAT[it]
+            mat = ITEM_TO_MAT[it]
             if ans.scenario in (4,5):
                 infr[mat][it].append(ESC_D[ans.scenario])
             for idx,val in enumerate(ans.gen):
                 if val in ("No","No es posible determinarlo"):
                     infr[mat][it].append(GEN_DESC[list(GEN_DESC)[idx]])
+            textos = IND_ESP.get(f"{mat} || {it}",[])
             for idx,val in enumerate(ans.spec):
-                if val=="No":
-                    textos=IND_ESP.get(f"{mat} || {it}",[])
-                    if idx<len(textos): infr[mat][it].append(f"Indicador «{textos[idx]}» = No")
-        with st.spinner("Generando informe…"):
-            fname=_export(st.session_state.mat_sc,
-                          st.session_state.it_sc,
-                          st.session_state.glob_sc,
-                          infr,org_in,eval_in)
-            with open(BASE/fname,"rb") as f:
-                st.sidebar.download_button("📄 Descargar informe", f, file_name=fname)
+                if val=="No" and idx<len(textos):
+                    infr[mat][it].append(f"Indicador «{textos[idx]}» = No")
+
+        fname = _export(st.session_state.mat_sc, st.session_state.it_sc,
+                        st.session_state.glob_sc, infr, org_in, eval_in)
+        with open(BASE / fname,"rb") as f:
+            st.sidebar.download_button("📄 Descargar informe", f, file_name=fname)
         st.sidebar.success("Informe generado.")
