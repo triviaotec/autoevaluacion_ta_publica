@@ -2,9 +2,9 @@
 """
 Autoevaluacion Transparencia Activa · Versión depurada
 ------------------------------------------------------
-• Orden de materias/ítems por ID (no alfabético)  
-• Ponderaciones y % de cumplimiento ajustados  
-• Validaciones: no permite guardar ítems incompletos  
+• Orden de materias/ítems por ID (no alfabético)
+• Ponderaciones y % de cumplimiento ajustados
+• Validaciones: no permite guardar ítems incompletos
 • Exporta reporte Word con la plantilla «plantilla_nueva.docx»
 
 © 2025 – Diego González
@@ -40,25 +40,26 @@ elif (BASE / "TRIVIA.jpeg").exists():
 else:
     P_LOGO = None
 
-# ───────────────── CONFIGURACIÓN DE STREAMLIT (PRIMER st.*) ─────────────────
+# ─────────────── CONFIGURACIÓN DE STREAMLIT ─────────────────────────────────
 st.set_page_config(
     page_title="Autoevaluación Transparencia Activa",
     layout="wide",
     page_icon=str(P_LOGO) if P_LOGO else None
 )
 
-# ─────────────── Visualización del logo en la app ────────────────────────────
 def _logo64(p: Path) -> str:
     if not p or not p.exists():
         return ""
-    return f"data:image/{p.suffix.lstrip('.')};base64," \
-           f"{base64.b64encode(p.read_bytes()).decode()}"
+    img_bytes = p.read_bytes()
+    b64 = base64.b64encode(img_bytes).decode()
+    return f"data:image/{p.suffix.lstrip('.')};base64,{b64}"
 
+# Mostrar logo en la esquina
 st.markdown(
     f"""
 <style>
-#MainMenu, header, footer{{visibility:hidden}}
-#logo{{position:fixed;top:8px;right:18px;z-index:10}}
+#MainMenu, header, footer {{visibility:hidden}}
+#logo {{position:fixed; top:8px; right:18px; z-index:10}}
 </style>
 <div id="logo"><img src="{_logo64(P_LOGO)}" width="140"></div>
 """,
@@ -67,13 +68,11 @@ st.markdown(
 
 # ──────────────── Carga y orden de la estructura ────────────────────────────
 df = pd.read_json(P_ITEMS)
-# Corrige un nombre mal digitado que aparece en algunos registros
 df["Materia"] = df["Materia"].replace(
     "Actos y resoluciones que tengas efectos sobre terceros",
     "Actos y resoluciones con efectos sobre terceros",
 )
-
-df = df.sort_values("ID")  
+df = df.sort_values("ID")
 ITEMS = df.to_dict("records")
 TOTAL = len(ITEMS)
 
@@ -82,7 +81,7 @@ MAT_TO_ITEMS = defaultdict(list)
 for r in ITEMS:
     MAT_TO_ITEMS[r["Materia"].strip()].append(r["Ítem"])
 
-# Orden de materias según primera aparición
+# Orden de materias por primera aparición
 ORDER_MAT: list[str] = []
 _seen = set()
 for r in ITEMS:
@@ -90,13 +89,12 @@ for r in ITEMS:
     if m not in _seen:
         ORDER_MAT.append(m)
         _seen.add(m)
-
 del _seen
 
-# Pesos numéricos de las materias (descarta celdas con texto)
+# Pesos numéricos de materias
 def _num_first(s: pd.Series):
-    s = pd.to_numeric(s, errors="coerce").dropna()
-    return s.iloc[0] if not s.empty else pd.NA
+    s2 = pd.to_numeric(s, errors="coerce").dropna()
+    return s2.iloc[0] if not s2.empty else pd.NA
 
 MAT_PESO = df.groupby("Materia")["Peso Materia (%)"].apply(_num_first).to_dict()
 
@@ -104,7 +102,7 @@ MAT_PESO = df.groupby("Materia")["Peso Materia (%)"].apply(_num_first).to_dict()
 IND_ESP = json.loads(P_ESP.read_text(encoding="utf-8"))
 
 # ──────────────────────── Estado de sesión ──────────────────────────────────
-ItemR = namedtuple("ItemR", "scenario gen spec")  
+ItemR = namedtuple("ItemR", "scenario gen spec")
 st.session_state.setdefault("idx", 0)
 st.session_state.setdefault("answers", {})
 
@@ -116,34 +114,29 @@ GEN_DESC = {
     "completitud": "Información incompleta",
 }
 
-# Índice seguro para radios
-def _safe_idx(options: list[str], value, default: int = 0):
+def _safe_idx(options: list[str], value, default: int = 0) -> int:
     try:
         return options.index(value) if value in options else default
     except (ValueError, TypeError):
         return default
 
-# ────────────────────── Funciones de puntaje ─────────────────────────────────
+# ────────────────────── Cálculos de puntaje ─────────────────────────────────
 def _puntaje_item(r: ItemR) -> float | None:
     if r.scenario in (2, 3):
         return None
     if r.scenario in (4, 5):
         return 0
-
     g_vals = [VAL_GEN[v] for v in r.gen if v is not None]
     if len(g_vals) < 3:
         return None
     gen_score = min(g_vals)
-
     esp_apl = [v for v in r.spec if v != "No aplica"]
     esp_score = (
         100
         if not esp_apl
         else round(sum(v == "Sí" for v in esp_apl) / len(esp_apl) * 100)
     )
-
     return round(gen_score * 0.75 + esp_score * 0.25, 1)
-
 
 def _calcular():
     item_sc = {it: _puntaje_item(r) for it, r in st.session_state.answers.items()}
@@ -151,14 +144,10 @@ def _calcular():
     for m in ORDER_MAT:
         nums = [item_sc[i] for i in MAT_TO_ITEMS[m] if item_sc.get(i) is not None]
         mat_sc[m] = None if not nums else round(sum(nums) / len(nums), 1)
-
-    pesos = {
-        m: p for m, p in MAT_PESO.items() if pd.notna(p) and mat_sc.get(m) is not None
-    }
+    pesos = {m: p for m, p in MAT_PESO.items() if pd.notna(p) and mat_sc.get(m) is not None}
     if pesos:
         glob = round(
-            sum(mat_sc[m] * pesos[m] for m in pesos) / sum(pesos.values()),
-            1,
+            sum(mat_sc[m] * pesos[m] for m in pesos) / sum(pesos.values()), 1
         )
     else:
         vals = [v for v in mat_sc.values() if v is not None]
@@ -168,12 +157,10 @@ def _calcular():
 # ─────────────── Pantalla de evaluación ────────────────────────────────────
 cur = ITEMS[st.session_state.idx]
 mat, it = cur["Materia"].strip(), cur["Ítem"]
-
 st.title("Autoevaluación Transparencia Activa")
 st.markdown(f"**Materia:** {mat}")
 st.markdown(f"**Ítem:** {it}")
-
-prev: ItemR | None = st.session_state.answers.get(it)
+prev = st.session_state.answers.get(it)  # type: ItemR | None
 key = lambda s: f"{it}::{s}"
 
 ESC_D = {
@@ -192,28 +179,20 @@ esc = st.radio(
     key=key("esc"),
 )
 
-# ── Indicadores generales y específicos ─────────────────────────────────────
+# Indicadores generales y específicos
 disp = act = comp = None
 spec_vals: list[str] = []
 
 if esc == 1:
     idx_disp = _safe_idx(["Sí", "No"], prev.gen[0] if prev else None)
     disp = st.radio("1⃣ ¿Información disponible?", ["Sí", "No"], index=idx_disp, key=key("disp"))
-
     if disp == "Sí":
         idx_act = _safe_idx(["Sí", "No"], prev.gen[1] if prev else None)
         act = st.radio("2⃣ ¿Información actualizada?", ["Sí", "No"], index=idx_act, key=key("act"))
-
         if act == "Sí":
             opts = ["Sí", "No", "No es posible determinarlo"]
             idx_comp = _safe_idx(opts, prev.gen[2] if (prev and len(prev.gen) > 2) else None)
-            comp = st.radio(
-                "3⃣ ¿Información completa?",
-                opts,
-                index=idx_comp,
-                key=key("comp"),
-            )
-
+            comp = st.radio("3⃣ ¿Información completa?", opts, index=idx_comp, key=key("comp"))
     if disp == act == "Sí" and comp is not None:
         lista = IND_ESP.get(f"{mat} || {it}", [])
         if lista:
@@ -227,7 +206,6 @@ if esc == 1:
 def _valid_inputs() -> bool:
     if esc != 1:
         return True
-
     if disp is None:
         return False
     if disp == "No":
@@ -262,7 +240,6 @@ with c3:
 def _tabla(doc: Document, headers: list[str], rows: list[tuple[str, str]]):
     tbl = doc.add_table(rows=1 + len(rows), cols=len(headers))
     tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
-
     # encabezados
     for i, h in enumerate(headers):
         cell = tbl.rows[0].cells[i]
@@ -274,13 +251,11 @@ def _tabla(doc: Document, headers: list[str], rows: list[tuple[str, str]]):
         cell._tc.get_or_add_tcPr().append(
             parse_xml(f"<w:shd {nsdecls('w')} w:fill='000000'/>")
         )
-
     # filas
     for r_i, (k, v) in enumerate(rows, 1):
         tbl.rows[r_i].cells[0].text = str(k)
         tbl.rows[r_i].cells[1].text = "-" if v is None else f"{v:.1f}"
         tbl.rows[r_i].cells[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-
     # bordes
     for row in tbl.rows:
         for cell in row.cells:
@@ -293,25 +268,21 @@ def _tabla(doc: Document, headers: list[str], rows: list[tuple[str, str]]):
                         )
                     )
 
-
 def _export(mat_sc, item_sc, glob, infr, org, evalua):
     doc = Document(str(P_DOCX))
     for s in doc.sections:
         s.top_margin = s.bottom_margin = Cm(2.5)
         s.left_margin = s.right_margin = Cm(2.0)
-
     p = doc.paragraphs[0] if doc.paragraphs else doc.add_paragraph()
     p.clear()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = p.add_run("REPORTE DE AUTOEVALUACIÓN DE TRANSPARENCIA ACTIVA")
     run.bold = True
     run.font.size = Pt(16)
-
     doc.add_paragraph(f"Organismo: {org}")
     doc.add_paragraph(f"Fecha: {datetime.now():%d-%m-%Y}")
     doc.add_paragraph(f"Evaluador(a): {evalua}")
     doc.add_paragraph(f"Cumplimiento TA global observado: {glob:.1f} %")
-
     doc.add_paragraph()
     h1 = doc.add_paragraph()
     h1.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -319,11 +290,72 @@ def _export(mat_sc, item_sc, glob, infr, org, evalua):
     run1.bold = True
     run1.font.size = Pt(13)
     _tabla(doc, ["Materia", "%"], [(m, mat_sc[m]) for m in ORDER_MAT])
-
     doc.add_paragraph()
     h2 = doc.add_paragraph()
     h2.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run2 = h2.add_run("Puntaje por Ítems")
     run2.bold = True
     run2.font.size = Pt(13)
-    _tabla(doc, ["Ítem", "%"], [(it, item_sc.get(it)) for it in ITEM... (truncated due to size)
+    _tabla(doc, ["Ítem", "%"], [(it, item_sc.get(it)) for it in ITEM_TO_MAT])
+    if infr:
+        doc.add_paragraph()
+        h3 = doc.add_paragraph()
+        h3.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run3 = h3.add_run("Incumplimientos detectados")
+        run3.bold = True
+        run3.font.size = Pt(13)
+        for m in ORDER_MAT:
+            if m not in infr:
+                continue
+            pm = doc.add_paragraph()
+            rm = pm.add_run(m)
+            rm.bold = True
+            rm.font.size = Pt(12)
+            for it, lst in infr[m].items():
+                pit = doc.add_paragraph(f"  {it}")
+                pit.runs[0].bold = True
+                pit.runs[0].font.size = Pt(11)
+                for i, txt in enumerate(lst, 1):
+                    pinc = doc.add_paragraph(f"    {i}. {txt}")
+                    for r in pinc.runs:
+                        r.font.size = Pt(11)
+    name = f"Reporte_TA_{org}_{datetime.now():%Y%m%d}.docx"
+    doc.save(BASE / name)
+    return name
+
+# ───────────────────────── Sidebar ──────────────────────────────────────────
+st.sidebar.header("Resultados")
+org_in  = st.sidebar.text_input("Nombre organismo")
+eval_in = st.sidebar.text_input("Evaluador(a)")
+
+if st.sidebar.button("Calcular resultados"):
+    st.session_state.it_sc, st.session_state.mat_sc, st.session_state.glob_sc = _calcular()
+    st.sidebar.metric("Cumplimiento global", f"{st.session_state.glob_sc:.1f} %")
+
+st.sidebar.markdown("---")
+if st.sidebar.button("Exportar Word") and org_in and eval_in:
+    if "mat_sc" not in st.session_state:
+        st.sidebar.warning("Calcula primero los resultados.")
+    else:
+        infr = defaultdict(lambda: defaultdict(list))
+        for it, ans in st.session_state.answers.items():
+            mat = ITEM_TO_MAT[it]
+            if ans.scenario in (4, 5):
+                infr[mat][it].append(ESC_D[ans.scenario])
+            for idx, val in enumerate(ans.gen):
+                if val in ("No", "No es posible determinarlo"):
+                    infr[mat][it].append(GEN_DESC[list(GEN_DESC)[idx]])
+            lista = IND_ESP.get(f"{mat} || {it}", [])
+            for idx, val in enumerate(ans.spec):
+                if val == "No" and idx < len(lista):
+                    infr[mat][it].append(f"Indicador específico «{lista[idx]}» = No")
+        fname = _export(
+            st.session_state.mat_sc,
+            st.session_state.it_sc,
+            st.session_state.glob_sc,
+            infr,
+            org_in, eval_in
+        )
+        with open(BASE / fname, "rb") as f:
+            st.sidebar.download_button("📄 Descargar informe", f, file_name=fname)
+        st.sidebar.success("Informe generado.")
