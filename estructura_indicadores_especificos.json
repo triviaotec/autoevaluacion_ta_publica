@@ -1,0 +1,542 @@
+{
+  "Actos y documentos publicados en el Diario Oficial || Actos y documentos publicados en el Diario Oficial": [
+    "Indica en todos los casos el año en que se realiza la publicación en la página de Transparencia Activa",
+    "Indica en todos los casos el mes en que se realiza la publicación en la página de Transparencia Activa",
+    "Indica en todos los casos el número de la norma.",
+    "Indica en todos los casos el tipo de norma (ejemplo: Ley, Decreto o Resolución)",
+    "Indica en todos los casos la denominación de la norma.",
+    "Indica en todos los casos la fecha de la publicación en el Diario Oficial.",
+    "Indica en todos los casos la fecha de modificación o derogación, si corresponde.",
+    "Indica en todos los casos la fecha de promulgación de la norma.",
+    "La nómina de publicaciones en el Diario Oficial se encuentra ordenada cronológicamente (de la más nueva  la más antigua).",
+    "Presenta en todos los casos el texto íntegro y actualizado del documento.",
+    "Presenta información desde la entrada en vigencia de la Ley de Transparencia.",
+    "Se informan únicamente los actos y documentos que hayan sido dictados por el propio sujeto obligado y publicados en el Diario Oficial",
+    "Señala de forma expresa que posea actos y documentos publicados en el Diario Oficial."
+  ],
+  "Actos y resoluciones que tengas efectos sobre terceros || Actos y resoluciones que tengas efectos sobre terceros": [
+    "El acceso a los textos íntegros y actualizados de cada uno de los actos y resoluciones se encuentra disponible.",
+    "En enlace de cada materia deriva a una planilla con información de esa tipología",
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos la fecha de publicación en el Diario Oficial o del medio, forma y fecha de publicidad.",
+    "Indica en todos los casos la fecha de última actualización (en caso de tener efectos generales) o indica expresamente que ha sido objeto de modificación",
+    "Indica en todos los casos si el acto tiene efectos particulares o generales",
+    "Indica en todos los casos una breve descripción del objeto del acto",
+    "Indica mes al que corresponde la publicación.",
+    "Individualización del acto: indica en todos los casos el número del acto",
+    "Individualización del acto: indica en todos los casos el tipo de acto ",
+    "Individualización del acto: indica en todos los casos la denominación del acto",
+    "Individualización del acto: indica en todos los casos la fecha del acto",
+    "La información Se presenta en orden cronológico, desde los más nuevos los más antiguos.",
+    "La información Se presenta separada por materias o segmentada por tipologías de actos y/o se utilizan categorías genéricas de actos administrativos, como: decretos, resoluciones, circulares, etc.",
+    "Presenta en todas las tipologías información desde la entrada en vigencia de la Ley de Transparencia",
+    "Señala de forma expresa que durante el periodo otorgó dictó actos con efectos sobre terceros."
+  ],
+  "Adquisiciones y contrataciones || Contrataciones no sometidas al Sistema de Compras Públicas, relativas a bienes muebles o servicios": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos el monto o precio total convenido.",
+    "Indica en todos los casos el objeto de la contratación o adquisición.",
+    "Indica en todos los casos la duración del contrato (fecha inicio, fecha término o cláusula de renovación automática).",
+    "Indica en todos los casos la Individualización de los socios o accionistas principales de las empresas o sociedades prestadoras, según seal caso.",
+    "Indica en todos los casos la Individualización del acto administrativo que aprueba el contrato (tipo, denominación, fecha y número) u orden de compra.",
+    "Indica en todos los casos la Individualización del contratista (nombre completo o razón social y RUT para las personas juridicas).",
+    "Indica en todos los casos la unidad monetaria del monto o precio total convenido.",
+    "Indica mes al que corresponde la publicación.",
+    "Informa las contrataciones relativas a bienes inmuebles en una planilla.",
+    "Presenta en todos los casos texto íntegro del acto administrativo que apruebe el contrato (o acto que lo formalice).",
+    "Presenta en todos los casos texto íntegro del acto administrativo que contenga las posteriores modificación (si procede).",
+    "Presenta en todos los casos texto íntegro del contrato.",
+    "Señala de forma expresa que durante el período posea adquisiciones de bienes muebles o servicios."
+  ],
+  "Adquisiciones y contrataciones || Contrataciones no sometidas al Sistema de Compras Públicas, relativas a compras menores a 3 UTM": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos el monto o precio total convenido.",
+    "Indica en todos los casos el objeto de la contratación o adquisición.",
+    "Indica en todos los casos la fecha de la contratación o duración de la misma (Superior a un día).",
+    "Indica en todos los casos la Individualización del acto administrativo que aprueba la contratación (ejemplo: como el que autoriza los montos globales para compras menores).",
+    "Indica en todos los casos la Individualización del contratista (nombre completo o razón social y RUT para las personas juridicas).",
+    "Indica en todos los casos la unidad monetaria del monto o precio total convenido.",
+    "Indica mes al que corresponde la publicación.",
+    "Informa las contrataciones menores a 3 UTM en una planilla.",
+    "Presenta en todos los casos texto íntegro del acto administrativo que apruebe la contratación.",
+    "Presenta en todos los casos un enlace con el detalle sobre objeto de la compra, nombre o razón social del proveedor, fecha y monto de la misma firmado por los funcionarios/as competentes.",
+    "Señala de forma expresa que durante el período posea adquisiciones menores a 3 utm."
+  ],
+  "Adquisiciones y contrataciones || Contrataciones relativas a bienes inmuebles": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos el monto o precio total convenido.",
+    "Indica en todos los casos el objeto de la contratación o adquisición.",
+    "Indica en todos los casos la duración del contrato (fecha inicio, fecha término o cláusula de renovación automática).",
+    "Indica en todos los casos la Individualización de los socios o accionistas principales de las empresas o sociedades prestadoras, según seal caso.",
+    "Indica en todos los casos la Individualización del acto administrativo que aprueba el contrato (tipo, denominación, fecha y número) u orden de compra.",
+    "Indica en todos los casos la Individualización del contratista (nombre completo o razón social y RUT para las personas juridicas).",
+    "Indica en todos los casos la unidad monetaria del monto o precio total convenido.",
+    "Indica mes al que corresponde la publicación.",
+    "Informa las contrataciones de bienes inmuebles en una planilla.",
+    "Presenta en todos los casos texto íntegro del acto administrativo que apruebe el contrato (o acto que lo formalice).",
+    "Presenta en todos los casos texto íntegro del acto administrativo que contenga las posteriores modificación (si procede)",
+    "Presenta en todos los casos texto íntegro del contrato.",
+    "Señala de forma expresa que durante el período posea contratos relativos a bienes inmuebles"
+  ],
+  "Adquisiciones y contrataciones || Contratos que hubieren sido formalizados mediante la emisión de orden de compra": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos el monto o precio total convenido.",
+    "Indica en todos los casos el objeto de la contratación o adquisición.",
+    "Indica en todos los casos la duración del contrato (fecha inicio, fecha término o cláusula de renovación automática).",
+    "Indica en todos los casos la Individualización de la orden de compra (denominación, fecha y número).",
+    "Indica en todos los casos la Individualización de los socios o accionistas principales de las empresas o sociedades prestadoras, según seal caso.",
+    "Indica en todos los casos la Individualización del contratista (nombre completo o razón social y RUT para las personas juridicas).",
+    "Indica en todos los casos la unidad monetaria del monto o precio total convenido.",
+    "Indica mes al que corresponde la publicación.",
+    "Informa las contrataciones formalizados mediante la emisión de orden de compra en una planilla.",
+    "Presenta en todos los casos texto íntegro a la orden de compra.",
+    "Señala de forma expresa que durante el período posea adquisiciones formalizadas vía orden de compra"
+  ],
+  "Adquisiciones y contrataciones || Adquisiciones o contrataciones sometidas al Sistema de Compras Públicas": [
+    "Señala de forma expresa que durante el período posea adquisiciones realizadas a través del Sistema de Compras Públicas.",
+    "Vínculo al portal de compras públicas, o el vínculo que lo reemplace está disponible, operativo y dirige directamente a las contrataciones realizadas por el organismo"
+  ],
+  "Antecedentes preparatorios PYME || Antecedentes preparatorios PYME": [
+    "En formulario: indica en todos los casos la estimación simple del impacto social y económico que la norma jurídica general podrá producir en la Empresa de Menor Tamaño",
+    "En formulario: indica en todos los casos los principales contenidos de la norma jurídica general que se propone, incluyendo una descripción del problema o situación original que motiva la implementación de la propuesta, los objetivos de la misma y los efectos",
+    "En formulario: Informa en todos los casos sobre consultas voluntarias, efectuadas o previstas con instituciones públicas y privadas especializadas o con organizaciones representativas de Empresas de Menor Tamaño, incluyendo los resultados de la realización de tales consultas",
+    "Indica en todos los casos efectos de la norma",
+    "Indica en todos los casos el organismo que dicta la norma",
+    "Indica en todos los casos el tipo de norma",
+    "Indica en todos los casos la denominación titulo o nombre de la propuesta normativa",
+    "Indica en todos los casos la fecha de publicación del formulario en el sitio web de Transparencia Activa",
+    "Presenta en todos los casos un enlace a mayor información",
+    "Presenta en todos los casos un enlace operativo al formulario de estimación de impacto regulatorio en empresas de menor tamaño",
+    "Señala de forma expresa que durante el periodo existen antecedentes preparatorios PYME"
+  ],
+  "Auditorías al ejercicio presupuestario || Auditorías al ejercicio presupuestario": [
+    "Indica en todos los casos el año al que corresponde la publicación del informe de auditoría",
+    "Indica en todos los casos el mes al que corresponde la publicación del informe de auditoría",
+    "Indica en todos los casos el periodo auditado",
+    "Indica en todos los casos el título de la auditoría",
+    "Indica en todos los casos la descripción de la materia de la auditoría",
+    "Indica en todos los casos la entidad que hizo la auditoría",
+    "Indica en todos los casos la fecha de inicio y la fecha de término de la auditoría, o expresa que existe información al respecto",
+    "Indica en todos los casos la fecha de publicación del informe de auditoría",
+    "Presenta información desde la entrada en vigencia de la Ley de Transparencia",
+    "Presenta una planilla las auditorías al ejercicio presupuestario",
+    "Publica en todos los casos un enlace al texto íntegro de las aclaraciones",
+    "Publica en todos los casos un enlace al texto íntegro del informe final ",
+    "Señala de forma expresa que durante el periodo se han efectuado auditorías al ejercicio presupuestario"
+  ],
+  "Costos directos de reproducción || Costos directos de reproducción": [
+    "El enlace que contiene el acto administrativo que fija los costos de reproducción se encuentra operativo",
+    "El enlace que contiene el acto administrativo que fija los costos de reproducción, deriva a un documento que se encuentra actualizado",
+    "El enlace que contiene el acto administrativo que fija los costos de reproducción, deriva a un documento que se encuentra completo",
+    "Señala de forma expresa que durante el periodo se ha dictado el decreto o resolución que fije los costos directos de reproducción"
+  ],
+  "Estructura Orgánica y Facultades, funciones y atribuciones de las estructuras internas de los sujetos obligados. || Organigrama": [
+    "El organigrama o esquema es interactivo.",
+    "El organigrama o esquema presenta el nombre de la autoridad o jefatura de cada una de las unidades o dependencias.",
+    "El organigrama o esquema presenta las facultades, funciones y atribuciones de cada una de las unidades o dependencias.",
+    "El organigrama o esquema presenta las normas que asignan facultades, funciones y atribuciones de cada una de las unidades o dependencias.",
+    "Señala de forma expresa que posea un organigrama."
+  ],
+  "Estructura Orgánica y Facultades, funciones y atribuciones de las estructuras internas de los sujetos obligados. || Facultades, funciones y atribuciones de cada una de sus unidades o dependencias internas": [
+    "Indica en todos  los casos la última fecha de modificación registrada (si la hubiere) o un texto indicando expresamente que ha sido objeto de modificaciones.",
+    "Indica en todos los casos el nombre de cada unidad o dependencia del sujeto obligado.",
+    "Indica en todos los casos el o los artículos de la Ley, reglamento, u otro acto administrativo, que las otorgó.",
+    "Indica en todos los casos la descripción de las facultades asignadas a cada una de sus unidades o dependencias internas.",
+    "Indica en todos los casos la fecha de promulgación.",
+    "Indica en todos los casos su fecha de publicación cuando haya sido publicada en el Diario Oficial.",
+    "Informa las facultades en una planilla.",
+    "Presenta en todos los casos un enlace al texto íntegro y actualizado de la norma que otorga las facultades y atribuciones.",
+    "Señala de forma expresa que posea ufacultades, funciones y/o atribuciones"
+  ],
+  "Estructura Orgánica y Facultades, funciones y atribuciones de las estructuras internas de los sujetos obligados. || Estructura Orgánica de Transparencia y Protección de Datos": [
+    "Indica en todos los casos el cargo del Jefe Superior del Servicio",
+    "Indica en todos los casos el nombre y apellido del Jefa o Jefe Superior del Servicio",
+    "Indica la calidad juridica de el o los funcionarios o funcionarias que forman parte de la Unidad (planta, contrata, honorarios, Código del Trabajo)",
+    "Indica la unidad o dependencia del sujeto obligado que tiene a cargo las funciones relacionadas con el cumplimiento de la Ley de Transparencia"
+  ],
+  "Índice de actos y documentos calificados como secretos o reservados || Índice de actos y documentos calificados como secretos o reservados": [
+    "Indica en todos los casos el fundamento legal y la causal de secreto o reserva",
+    "Indica en todos los casos la fecha de notificación del acto o resolución denegatoria",
+    "No identifica en todos los casos la parte del acto, documento o información declarado secreto o reservado, para el caso que la declaración sea parcial",
+    "No individualiza en todos los casos los actos o resoluciones denegatorias que resuelvan los procedimientos administrativos de acceso a la información",
+    "Presenta en todos los casos la denominación que singularice a los actos, documentos e informaciones declarados secretos o reservados",
+    "Presenta en todos los casos un enlace operativo al acto o resolución en que consta tal calificación",
+    "Señala de forma expresa que durante el periodo se han dictado actos secretos o reservados"
+  ],
+  "Información presupuestaria || Estado de situación financiera": [
+    "Estados de situación financiera se encuentran disponibles",
+    "Estados de situación financiera se encuentran desactualizados",
+    "Estados de situación financiera se encuentran incompletos",
+    "Señala de forma expresa que durante el periodo se cuenta con estados de situación financiera"
+  ],
+  "Información presupuestaria || Presupuesto asignado": [
+    "Indica el año al que corresponde el presupuesto que se publica",
+    "Indica el monto del presupuesto inicial asignado por Ley de Presupuestos",
+    "Indica la clasificación presupuestaria, o la desagregación que corresponda a su presupuesto",
+    "Presenta una planilla con el presupuesto del organismo",
+    "Señala de forma expresa que durante el periodo aun se ha asignado el presupuesto del año"
+  ],
+  "Información presupuestaria || Modificaciones presupuestarias": [
+    "Indica el monto asignado en las modificaciones presupuestarias totalmente tramitadas",
+    "Indica en todos los casos el número del decreto que aprueba cada modificación presupuestaria",
+    "Indica en todos los casos la fecha del decreto que aprueba cada modificación presupuestaria",
+    "Publica en todos los casos el texto íntegro del decreto que aprobó la modificación presupuestaria",
+    "Señala de forma expresa que durante el periodo tuvieron lugar modificaciones presupuestarias"
+  ],
+  "Información presupuestaria || Gastos de representación, protocolo y ceremonial": [
+    "Indica en todos los casos el año al que corresponden los gastos de representación, protocolo y ceremonial",
+    "Indica en todos los casos el mes al que corresponden los gastos de representación, protocolo y ceremonial",
+    "Indica en todos los casos el monto ",
+    "Indica en todos los casos la unidad monetaria (Peso, dólar, UF, entre otras) ",
+    "Indica en todos los casos observaciones de ser necesario y procedente",
+    "Indica en todos los casos una breve descripción ",
+    "Se presenta en todos los casos un enlace al documento en que conste el gasto (boleta, factura, orden de compra, u otro similar)",
+    "Presenta en todos los casos una identificación del proveedor (nombre completo en el caso de personas naturales y razón social en el caso de personas jurídicas)",
+    "Presenta una planilla con los gastos de representación, protocolo y ceremonial",
+    "Señala expresamente que existen gastos de representación durante el periodo"
+  ],
+  "Información presupuestaria || Modificaciones presupuestarias municipales": [
+    "Modificaciones presupuestarias se encuentran disponibles",
+    "Modificaciones presupuestarias se encuentran desactualizadas",
+    "Modificaciones presupuestarias se encuentran incompletas"
+  ],
+  "Información presupuestaria || Pasivos de la Corporación Municipal": [
+    "Pasivos de las corporaciones se encuentran disponibles",
+    "Pasivos de las corporaciones se encuentran desactualizados",
+    "Pasivos de las corporaciones se encuentran incompletos",
+    "Señala de forma expresa que durante el periodo se cuenta con pasivos de las corporaciones municipales"
+  ],
+  "Información presupuestaria || Pasivos del municipio": [
+    "Pasivos del municipio se encuentran disponibles",
+    "Pasivos del municipio se encuentran desactualizados",
+    "Pasivos del municipio se encuentran incompletos",
+    "Señala de forma expresa que durante el periodo se cuenta con pasivos"
+  ],
+  "Información presupuestaria || Ejecución presupuestaria": [
+    "Presenta la información de la ejecución presupuestaria según la desagregación propia que la Ley de Presupuestos le asigne al respectivo sujeto obligado (subtítulos, ítem, partidas)",
+    "Presenta una columna que consigne el monto total al que asciende la ejecución acumulada",
+    "Presenta una columna que informe el porcentaje al que corresponde la ejecución acumulada en relación al presupuesto asignado, incluyendo sus modificaciones",
+    "Presenta una planilla con la ejecución mensual del presupuesto",
+    "Publica mes a mes el monto total ejecutado del presupuesto asignado al sujeto obligado",
+    "Señala expresamente que existe ejecución presupuestaria durante el periodo"
+  ],
+  "Información presupuestaria || Presupuesto asignado municipal": [
+    "Presupuesto inicial de cada sector se encuentra disponible",
+    "Presupuesto inicial de cada sector se encuentra actualizado",
+    "Presupuesto inicial de cada sector se encuentra completo",
+    "Señala de forma expresa que durante el periodo aun se ha asignado el presupuesto del año para cada sector"
+  ],
+  "Información presupuestaria || Ejecución presupuestaria municipal": [
+    "Balance de comprobación y de saldos agregado de cada sector se encuentra disponible",
+    "Balance de comprobación y de saldos agregado de cada sector se encuentra actualizado",
+    "Balance de comprobación y de saldos agregado de cada sector se encuentra completo",
+    "Balance de comprobación y de saldos desagregado de cada sector se encuentra disponible",
+    "Balance de comprobación y de saldos desagregado de cada sector se encuentra actualizado",
+    "Balance de comprobación y de saldos desagregado de cada sector se encuentra completo",
+    "Informe analítico de variaciones de la deuda de cada sector se encuentra disponible",
+    "Informe analítico de variaciones de la deuda de cada sector se encuentra actualizado",
+    "Informe analítico de variaciones de la deuda de cada sector se encuentra completo",
+    "Informe analítico de variaciones de la ejecución presupuestaria de cada sector se encuentra disponible",
+    "Informe analítico de variaciones de la ejecución presupuestaria de cada sector se encuentra actualizado",
+    "Informe analítico de variaciones de la ejecución presupuestaria de cada sector se encuentra completo",
+    "Informe analítico de variaciones de la ejecución presupuestaria de iniciativas de inversión de cada sector se encuentra disponible",
+    "Informe analítico de variaciones de la ejecución presupuestaria de iniciativas de inversión de cada sector se encuentra actualizado",
+    "Informe analítico de variaciones de la ejecución presupuestaria de iniciativas de inversión de cada sector se encuentra completo",
+    "Libro diario municipal de cada sector se encuentra disponible",
+    "Libro diario municipal de cada sector se encuentra actualizado",
+    "Libro diario municipal de cada sector se encuentra completo",
+    "Señala de forma expresa que durante el periodo se cuenta con el informe analítico de variaciones de la deuda",
+    "Señala de forma expresa que durante el periodo se cuenta con el informe analítico de variaciones de la ejecución presupuestaria",
+    "Señala de forma expresa que durante el periodo se cuenta con el informe analítico de variaciones de la ejecución presupuestaria de iniciativas de inversión",
+    "Señala de forma expresa que durante el periodo se cuenta con el libro diario municipal",
+    "Señala de forma expresa que durante el periodo se cuenta con un balance de comprobación de saldo agregado",
+    "Señala de forma expresa que durante el periodo se cuenta con un balance de comprobación de saldo desagregado"
+  ],
+  "Informe anual SUBDERE || Informe anual SUBDERE": [
+    "No excluye la información del escalafón de mérito vigente",
+    "No identifica las fuentes de financiamiento de programas para la contratación de  personal a honorarios",
+    "Informa sobre dotación incluyendo personal de planta y a contrata, honorarios a suma alzada pagados a personas naturales, honorarios asimilados a grado, jornales, remuneraciones reguladas por el Código del Trabajo, suplencias y reemplazos, personal a trato y/o alumnos en práctica",
+    "No se indica fecha de remisión a la Subdere",
+    "No se informan conceptos remuneratorios variables",
+    "Se presenta la política de recursos humanos y gasto total en la contratación de personal.",
+    "Presenta antigüedad del personal, tanto en la respectiva municipalidad como en otros órganos de la Administración del Estado",
+    "Presenta las modificaciones efectuadas a la planta de personal",
+    "Señala de forma expresa que durante el periodo se ha remitido el Informe anual de la Ley N°20.922 a la Subdere"
+  ],
+  "Mecanismos de participación ciudadana || Norma de participación ciudadana": [
+    "En caso de existir una modificación al texto de la norma, indica expresamente la fecha de la última de esta (si la hubiere)"
+  ],
+  "Mecanismos de participación ciudadana || Mecanismos de participación ciudadana": [
+    "Indica en todos los casos el nombre del mecanismo",
+    "Indica en todos los casos los requisitos para participar en el mecanismo",
+    "Indica en todos los casos una breve descripción del objeto del mecanismo",
+    "Se presenta en todos los casos un enlace a información o acto que explique en detalle en qué consiste cada mecanismo",
+    "Señala expresamente que el organismo cuenta con mecanismos de participación ciudadana"
+  ],
+  "Mecanismos de participación ciudadana || Consejos consultivos": [
+    "Indica para todos los consejos consultivos el nombre de sus consejeros y consejeras",
+    "Indica para todos los consejos consultivos el período de vigencia de cada uno de los integrantes del consejo consultivo, señalando la fecha de inicio y término de sus funciones",
+    "Indica para todos los consejos consultivos la organización o institución a la que representa cada consejero o consejera, si corresponde",
+    "Indica para todos los consejos consultivos la representación o calidades de sus integrantes, si corresponde (por ejemplo: presidente o presidenta, secretario o secretaria, etc.)",
+    "Indica para todos los consejos consultivos su forma de integración",
+    "Indica para todos los consejos consultivos su nombre",
+    "Indica para todos los consejos consultivos una breve descripción de su objetivo",
+    "Se presenta en todos los casos un enlace a información o acto que explique en detalle en qué consiste cada consejo consultivo",
+    "Se presenta una planilla distinta por cada uno de los consejos consultivos que posee el organismo",
+    "No se señala expresamente que existen consejos consultivos o uno o más de estos se encuentran vigentes"
+  ],
+  "Mecanismos de participación ciudadana || Mecanismos de participación ciudadana en ejecución": [
+    "Indica para todos los mecanismos de participación ciudadana en ejecución el nombre",
+    "Indica para todos los mecanismos de participación ciudadana en ejecución el propósito u objetivo",
+    "Indica para todos los mecanismos de participación ciudadana en ejecución la fecha de inicio y de término",
+    "Indica para todos los mecanismos de participación ciudadana en ejecución la fecha en la que se publicarán sus resultados, si corresponde",
+    "Indica para todos los mecanismos de participación ciudadana en ejecución los requisitos o forma de participar",
+    "Indica para todos los mecanismos de participación ciudadana en ejecución si es vinculante o no",
+    "Se presenta en todos los casos un enlace al documento que contenga los resultados de los mecanismos de participación ciudadan en ejecución, cuando éstos estén disponibles (si los hubiere)",
+    "Señala expresamente que el organismo cuenta con mecanismos de participación ciudadana en ejecución"
+  ],
+  "Mecanismos de participación ciudadana || norma de participación ciudadana": [
+    "No se señala expresamente que el organismo cuenta con una norma de participación ciudada"
+  ],
+  "Personal y remuneraciones || Información sobre escalas de remuneraciones": [
+    "Indica año al que corresponde la escala de remuneraciones",
+    "Indica en todas las escalas de remuneraciones publicadas información sobre Asignaciones permanentes (de acuerdo con la escala de remuneraciones del sujeto obligado)",
+    "Indica en todas las escalas de remuneraciones publicadas información sobre Asignaciones por concepto de metas e incentivos que correspondan al grado informado",
+    "Indica en todas las escalas de remuneraciones publicadas información sobre Estamento",
+    "Indica en todas las escalas de remuneraciones publicadas información sobre Grado",
+    "Indica en todas las escalas de remuneraciones publicadas información sobre monto de la remuneración bruta mensualizada que corresponda al grado",
+    "Indica en todas las escalas de remuneraciones publicadas información sobre Otras Asignaciones que correspondan al grado informado, si corresponde.",
+    "Indica en todas las escalas de remuneraciones publicadas información sobre Tabla con el cálculo de los bienios según el grado",
+    "Indica en todas las escalas de remuneraciones publicadas información sobre unidad monetaria",
+    "No existe correlación entre las escalas de remuneraciones publicadas y las nóminas del personal al que le resultan aplicables",
+    "Señala de forma expresa que posea escala de remuneraciones."
+  ],
+  "Personal y remuneraciones || Información del Personal a Contrata": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos Asignaciones especiales que percibe el/la funcionario/a",
+    "Indica en todos los casos cargo o función del/a funcionario/a",
+    "Indica en todos los casos el grado de la escala a que esté sujeto y/o cargo con jornada, según corresponda",
+    "Indica en todos los casos el nombre completo del/a funcionario/a ",
+    "Indica en todos los casos el número y montos pagados por las horas extraordinarias del/a funcionario/a, diferenciadas entre diurnas, nocturnas y las realizadas el sábado, domingo y festivos (si las hubiere)",
+    "Indica en todos los casos estamento al que pertenece el/la funcionario/a",
+    "Indica en todos los casos la calificación profesional o formación del/a funcionario/a",
+    "Indica en todos los casos la región (sólo si corresponde, ejemplo: competencias territoriales a nivel regional) en la que se desempeña el/la funcionario/a",
+    "Indica en todos los casos la remuneración bruta mensualizada por el/la funcionario/a",
+    "Indica en todos los casos la unidad monetaria en la que se le paga la remuneración al/a funcionario/a",
+    "Indica en todos los casos la vigencia de la relación laboral (fechas de inicio y término) o carácter indefinido, si fuera el caso.",
+    "Indica en todos los casos monto de las remuneraciones adicionales que perciba el funcionario o funcionaria por la realización de funciones diferentes.",
+    "Indica en todos los casos monto mensual de bonificaciones por cumplimiento de metas u objetivos",
+    "Indica mes al que corresponde la publicación.",
+    "Presenta una columna \"Observaciones\"",
+    "Señala de forma expresa que posea personal a contrata."
+  ],
+  "Personal y remuneraciones || Información del Personal de Planta": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos Asignaciones especiales que percibe el/la funcionario/a",
+    "Indica en todos los casos cargo o función del/a funcionario/a",
+    "Indica en todos los casos el grado de la escala a que esté sujeto y/o cargo con jornada, según corresponda",
+    "Indica en todos los casos el nombre completo del/a funcionario/a ",
+    "Indica en todos los casos el número y montos pagados por las horas extraordinarias del/a funcionario/a, diferenciadas entre diurnas, nocturnas y las realizadas el sábado, domingo y festivos (si las hubiere)",
+    "Indica en todos los casos estamento al que pertenece el/la funcionario/a",
+    "Indica en todos los casos la calificación profesional o formación del/a funcionario/a",
+    "Indica en todos los casos la región (sólo si corresponde, ejemplo: competencias territoriales a nivel regional) en la que se desempeña el/la funcionario/a",
+    "Indica en todos los casos la remuneración bruta mensualizada por el/la funcionario/a",
+    "Indica en todos los casos la unidad monetaria en la que se le paga la remuneración al/a funcionario/a",
+    "Indica en todos los casos la vigencia de la relación laboral (fechas de inicio y término) o carácter indefinido, si fuera el caso.",
+    "Indica en todos los casos monto de las remuneraciones adicionales que perciba el funcionario o funcionaria por la realización de funciones diferentes.",
+    "Indica en todos los casos monto mensual de bonificaciones por cumplimiento de metas u objetivos",
+    "Indica mes al que corresponde la publicación.",
+    "Presenta una columna \"Observaciones\"",
+    "Señala de forma expresa que posea personal de planta."
+  ],
+  "Personal y remuneraciones || Información del Personal sujeto al Código del Trabajo": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos Asignaciones especiales que percibe el/la funcionario/a",
+    "Indica en todos los casos cargo o función del/a funcionario/a",
+    "Indica en todos los casos el grado de la escala a que esté sujeto y/o cargo con jornada, según corresponda",
+    "Indica en todos los casos el nombre completo del/a funcionario/a ",
+    "Indica en todos los casos el número y montos pagados por las horas extraordinarias del/a funcionario/a, diferenciadas entre diurnas, nocturnas y las realizadas el sábado, domingo y festivos (si las hubiere)",
+    "Indica en todos los casos la calificación profesional o formación del/a funcionario/a",
+    "Indica en todos los casos la región (sólo si corresponde, ejemplo: competencias territoriales a nivel regional) en la que se desempeña el/la funcionario/a",
+    "Indica en todos los casos la remuneración bruta mensualizada por el/la funcionario/a",
+    "Indica en todos los casos la unidad monetaria en la que se le paga la remuneración al/a funcionario/a",
+    "Indica en todos los casos la vigencia de la relación laboral (fechas de inicio y término) o carácter indefinido, si fuera el caso.",
+    "Indica en todos los casos monto de las remuneraciones adicionales que perciba el funcionario o funcionaria por la realización de funciones diferentes.",
+    "Indica en todos los casos monto mensual de bonificaciones por cumplimiento de metas u objetivos",
+    "Indica mes al que corresponde la publicación.",
+    "Presenta una columna \"Observaciones\"",
+    "Señala de forma expresa que posea personal contratado bajo el Código del Trabajo."
+  ],
+  "Personal y remuneraciones || Información relativa a las autoridades que ejerzan cargos de elección popular, o en virtud de otra forma de designación.": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos el monto bruto de las dietas, rentas u otras contraprestaciones en dinero que percibe en razón de su cargo",
+    "Indica en todos los casos el nombre completo autoridad",
+    "Indica en todos los casos el número del acto administrativo a través del cual fue investido/a en el cargo",
+    "Indica en todos los casos el período de duración en el cargo (Fecha Inicio y Fecha de Término)",
+    "Indica en todos los casos la denominación del acto administrativo a través del cual fue investido/a en el cargo",
+    "Indica en todos los casos la fecha de publicación del acto administrativo a través del cual fue investido/a en el cargo",
+    "Indica en todos los casos la región (sólo si corresponde, ejemplo: competencias territoriales a nivel regional) en la que se desempeña la autoridad",
+    "Indica en todos los casos la unidad monetaria en la que se pagan las dieta, renta o contraprestación en dinero.",
+    "Indica en todos los casos si se trata de un cargo de elección popular, u otra forma de designación",
+    "Indica mes al que corresponde la publicación.",
+    "Presenta en todos los casos el texto íntegro del documento administrativo mediante el cual fue investido/a en su cargo",
+    "Señala de forma expresa que posea autoridades de elección popular u otra forma de designación."
+  ],
+  "Personal y remuneraciones || Personas naturales contratadas a honorarios": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos los casos el grado de la escala a que esté asimilado, según corresponda",
+    "Indica en todos los casos el honorario total bruto mensualizado",
+    "Indica en todos los casos el nombre completo del/a funcionario/a ",
+    "Indica en todos los casos la calificación profesional o formación del/a funcionario/a",
+    "Indica en todos los casos la forma o tipo de pago ",
+    "Indica en todos los casos la región (sólo si corresponde, ejemplo: competencias territoriales a nivel regional) en la que se desempeña el/la funcionario/a",
+    "Indica en todos los casos la unidad monetaria en la que se paga el honorario",
+    "Indica en todos los casos la vigencia de la contratación (fechas de inicio y término suscrita en contrato).",
+    "Indica en todos los casos una descripción detallada de la función",
+    "Indica mes al que corresponde la publicación.",
+    "Presenta en todos los casos un enlace al informe de las funciones desarrolladas por la persona natural contratada a honorarios",
+    "Presenta una columna \"Observaciones\"",
+    "Señala de forma expresa que posea personal contratado a honorarios."
+  ],
+  "Personal y remuneraciones || Información estadística sobre bonificaciones": [
+    "Indica el número total de funcionarios o funcionarias del sujeto obligado",
+    "Indica en todos los casos el porcentaje de la bonificación asignado a cada uno de los estamentos",
+    "Indica en todos los casos el porcentaje del total de funcionarios o funcionarias por cada estamento que reciben dicha bonificación",
+    "Indica en todos los casos la denominación de la bonificación",
+    "Presenta en una planilla separada, por cada bonificación, con información estadística sobre estas",
+    "Señala de forma expresa que posea bonificaciones."
+  ],
+  "Personal y remuneraciones || Información General del Personal": [
+    "No se disponibilizan datos personales de contexto del personal, como por ejemplo número de cédula de identidad, domicilio, fecha de nacimiento, nacionalidad, estado civil, télefono, correo electrónico particular, etc.|",
+    "Presenta la información del personal separada en planillas según se trate de 1) personal de planta, 2) personal a contrata, 3) personal sujeto al Código del Trabajo y 4) personas naturales contratadas a honorarios."
+  ],
+  "Potestades y Marco normativo || Marco normativo": [
+    "Indica año en que se realiza la publicación en la página de Transparencia Activa",
+    "Indica en todos los casos el número de la norma",
+    "Indica en todos los casos el Tipo de norma",
+    "Indica en todos los casos la denominación de la norma",
+    "Indica en todos los casos la fecha de promulgación de la norma.",
+    "Indica en todos los casos su fecha de publicación cuando haya sido publicada en el Diario Oficial.",
+    "Indica en todos los casos su fecha de última modificación registrada en ese texto, si la hubiere, o indicación de que el texto ha sido objeto de modificaciones.",
+    "Indica mes en que se realiza la publicación en la página de Transparencia Activa",
+    "Las normas de la misma jerarquía se encuentran ordenadas cronológicamente",
+    "Las otras normas se encuentran ordenadas jerárquicamente",
+    "Presenta en todos los casos texto íntegro y actualizado de cada norma, añadiendo enlaces a versiones derogadas de los textos de la norma",
+    "Publica las normas orgánicas del sujeto obligado primero.",
+    "Publica normas de aplicación general al sector público, debiendo publicar sólo aquellas que regulan específicamente al organismo"
+  ],
+  "Potestades y Marco normativo || Potestades, competencias, responsabilidades, funciones, atribuciones y/o tareas del organismo respectivo.": [
+    "Indica en todos los casos el o los artículos de las normas que  establecen las potestades, competencias, responsabilidad, funciones, atribuciones  y/o tareas del organismo",
+    "Indica en todos los casos la descripción de las potestades.",
+    "Informa las potestades en una planilla correspondiente",
+    "Presenta en todos los casos el texto íntegro y actualizado que contenga la norma respectiva"
+  ],
+  "Protección de datos personales y principio de divisibilidad || Protección de datos personales y principio de divisibilidad": [
+    "No se abstiene de publicar datos personales que tengan carácter reservado conforme a lo establecido en los artículos 7°, 10, 20 y siguientes de la ley N°19.628, sobre protección a la vida privada, así como los datos personales de contexto, esto es, direcciones, correos electrónicos, números telefónicos, estado civil, edad, etc.",
+    "No utiliza de forma correcta el principio de divisibilidad dispuesto en el artículo 11, literal e), de la Ley de Transparencia."
+  ],
+  "Publicidad de las obligaciones contenidas en la ley N°20.730 || Publicidad de las obligaciones contenidas en la ley N°20.730": [
+    "El enlace a la plataforma mediante la cual se da cumplimiento a las normas de publicidad contenidas en la ley N°20.730, que regula el lobby y las gestiones que representen intereses particulares ante las autoridades y funcionarios, se encuentra operativo",
+    "El enlace a la plataforma mediante la cual se da cumplimiento a las normas de publicidad contenidas en la ley N°20.730, que regula el lobby y las gestiones que representen intereses particulares ante las autoridades y funcionarios, se encuentra completo",
+    "El enlace a la plataforma mediante la cual se da cumplimiento a las normas de publicidad contenidas en la ley N°20.730, que regula el lobby y las gestiones que representen intereses particulares ante las autoridades y funcionarios, sobre probidad en la función pública y prevención de los conflictos de interés, se encuentra actualizado",
+    "Señala de forma expresa que a los funcionarios que se desempeñan en el organismo les aplica las disposiciones de la Ley del Lobby"
+  ],
+  "Publicidad de las obligaciones contenidas en la ley N°20.880 || Publicidad de las obligaciones contenidas en la ley N°20.880": [
+    "El enlace a la plataforma mediante la cual se da cumplimiento a las normas de publicidad contenidas en la ley N°20.880, sobre probidad en la función pública y prevención de los conflictos de interés, se encuentra operativo",
+    "El enlace a la plataforma mediante la cual se da cumplimiento a las normas de publicidad contenidas en la ley N°20.880, sobre probidad en la función pública y prevención de los conflictos de interés, se encuentra actualizado",
+    "El enlace a la plataforma mediante la cual se da cumplimiento a las normas de publicidad contenidas en la ley N°20.880, sobre probidad en la función pública y prevención de los conflictos de interés, se encuentra completo",
+    "Señala de forma expresa que a los funcionarios que se desempeñan en el organismo realizan declaración de patrimonio e intereses"
+  ],
+  "Sanciones impuestas en conformidad con el Título VI de la Ley de Transparencia || Sanciones impuestas en conformidad con el Título VI de la Ley de Transparencia": [
+    "La sección que contiene la(s) resolucion(es) emitida(s) por el Consejo para la Transparencia que, establezca(n) sanciones al Jefe o Jefa Superior y/o a los funcionarios o funcionarias del respectivo sujeto obligado por incumplimiento a la Ley de Trasparencia, se encuentra operativo",
+    "La sección que contiene la(s) resolucion(es) emitida(s) por el Consejo para la Transparencia que, establezca(n) sanciones al Jefe o Jefa Superior y/o a los funcionarios o funcionarias del respectivo sujeto obligado por incumplimiento a la Ley de Trasparencia, se encuentra actualizado",
+    "La sección que contiene la(s) resolucion(es) emitida(s) por el Consejo para la Transparencia que, establezca(n) sanciones al Jefe o Jefa Superior y/o a los funcionarios o funcionarias del respectivo sujeto obligado por incumplimiento a la Ley de Trasparencia,, se encuentra completo",
+    "Señala de forma expresa que durante el periodo se han dictado sanciones impuestas en conformidad con el Título VI de la Ley de Transparencia"
+  ],
+  "Subsidios y beneficios || Subsidios y beneficios propios": [
+    "Indica en todos los casos criterios de evaluación y asignación",
+    "Indica en todos los casos el número máximo de beneficiarios a los que se les puede otorgar, atendido el monto global asignado",
+    "Indica en todos los casos individualización del acto por el que se estableció el programa (tipo, denominación, número y fecha del acto )",
+    "Indica en todos los casos la fecha de inicio y de término del período de postulación, o en aquellos casos que se trate de una postulación permanente, se indica dicha circunstancia de forma expresa",
+    "Indica en todos los casos la unidad monetaria (Peso, dólar, UF, entre otras) del monto global asignado",
+    "Indica en todos los casos montos globales asignados",
+    "Indica en todos los casos objetivo del subsidio o beneficio",
+    "Indica en todos los casos plazos asociados al procedimiento de evaluación y asignación, si fuere del caso",
+    "Indica en todos los casos requisitos y antecedentes para postular",
+    "Indica en todos los casos un vinculo a la página del sitio web institucional y/o al documento donde se entrega información complementaria a su respecto",
+    "Indica en todos los casos unidad, órgano interno o dependencia que lo gestiona",
+    "Presenta cada programas sociales, subsidios o beneficios que otorgue el sujeto obligado una planilla distinta",
+    "Presenta el año que corresponde a cada uno de los programas sociales, subsidios o beneficios que otorgue el sujeto obligado",
+    "Presenta el nombre de cada uno de los programas sociales, subsidios o beneficios que otorgue el sujeto obligado",
+    "Presenta en todos los casos un enlace al documento íntegro y actualizado mediante el cual se estableció el programa social, subsidio o beneficio",
+    "Publica de forma mensual el diseño de los programas de subsidios y beneficios",
+    "Señala de forma expresa que durante el periodo otorgó subsidios y/o beneficios"
+  ],
+  "Subsidios y beneficios || Nómina de beneficiarios": [
+    "Indica en todos los casos el nombre completo de los beneficiarios (nombre completo en caso de personas naturales y razón social en caso de personas jurídicas)",
+    "Indica en todos los casos el número del acto mediante el cual se otorgó el beneficio",
+    "Indica en todos los casos el tipo de acto mediante el cual se otorgó el beneficio",
+    "Indica en todos los casos la denominación del acto mediante el cual se otorgó el beneficio",
+    "Indica en todos los casos la fecha de otorgamiento del beneficio",
+    "Indica en todos los casos la fecha del acto mediante el cual se otorgó el beneficio",
+    "No se excluye en todos los casos datos como, por ejemplo, domicilio, teléfono y correo, por ser estrictamente necesarios para individualizar a los beneficiarios.",
+    "No se excluye en todos los casos datos sensibles (tales como, origen social, ideologías, estados de salud)",
+    "Presenta el año que corresponde a cada una de las nóminas de beneficiarios de los programas sociales, subsidios o beneficios que otorgue el sujeto obligado",
+    "Presenta el mes que corresponde a cada una de las nóminas de beneficiarios de los programas sociales, subsidios o beneficios que otorgue el sujeto obligado",
+    "Presenta el nombre del programa social, subsidio o beneficio al que pertenece la nómina",
+    "Presenta por cada uno de los programas sociales, subsidios o beneficios una nómina de beneficiarios",
+    "Señala de forma expresa que durante el periodo otorgó subsidios y/o beneficios"
+  ],
+  "Trámites ante el organismo || Otros trámites": [
+    "Cuenta en todos los casos con un enlace a mayor información sobre el servicio respectivo, y/o éste está operativo (sólo en los casos en que existe mayor información)",
+    "Indica en todos los casos el lugar o lugares en que se puede solicitar el trámite o servicio",
+    "Indica en todos los casos el nombre o denominación del servicio que se entrega",
+    "Indica en todos los casos el valor del servicio, ya sea que éste tenga un costo o sea gratuito",
+    "Indica en todos los casos los requisitos y antecedentes necesarios para acceder al servicio",
+    "Indica en todos los casos los trámites y/o etapas contemplados para acceder al servicio",
+    "Indica en todos los casos una breve descripción del servicio que se entrega",
+    "Informa en todos los casos si es posible realizar en línea la solicitud de acceso al servicio y/o se incorpora el enlace al trámite o servicio respectivo",
+    "Se publica la información de los trámites o servicios que presta el organismo mediante una planilla",
+    "Señala de forma expresa que cuenta con otros trámites o que sus trámites son informados mediante ChileAtiende"
+  ],
+  "Trámites ante el organismo || Trámites en ChileAtiende": [
+    "Enlace a Chile Atiende o el vínculo que lo reemplace, se encuentra disponible y/o éste dirige directamente a los trámites del organismo en dicho sitio",
+    "Señala de forma expresa que Informa sus trámites mediante Chile Atiende"
+  ],
+  "Transferencia de fondos públicos y aportes económicos entregados || Transferencias reguladas por la Ley 19.862": [
+    "Existe un enlace desde el que se puede acceder directamente a las transferencias de fondos realizadas por el organismo, y este se encuentra operativo",
+    "Señala de forma expresa que durante el período haya realizado transferencias en el marco de la Ley N° 19.862"
+  ],
+  "Transferencia de fondos públicos y aportes económicos entregados || Otras transferencias": [
+    "Indica año al que corresponde la publicación.",
+    "Indica en todos  los casos la unidad monetaria en la que se realizó la transferencia",
+    "Indica en todos los casos el monto de la transferencia",
+    "Indica en todos los casos el objeto, finalidad o destino de los fondos públicos",
+    "Indica en todos los casos la fecha en que se materializó la transferencia",
+    "Indica en todos los casos la imputación presupuestaria de la transferencia",
+    "Indica en todos los casos la persona natural o jurídica destinataria de la transferencia ",
+    "Indica mes al que corresponde la publicación.",
+    "Las transferencias se publican ordenadas por año calendario y cronológicamente según hayan sido efectuadas",
+    "Las transferencias se publican todas en una misma planilla",
+    "Señala de forma expresa que durante el periodo haya realizado otras transferencias."
+  ],
+  "Vínculos con otras entidades || Vínculos con otras entidades": [
+    "Indica en todos los casos el tipo de vínculo (participación, representación o intervención)",
+    "Indica en todos los casos la entidad en la que participa",
+    "Indica en todos los casos la fecha de inicio y la fecha de término del vínculo, salvo que el vínculo sea indefinido y lo indique expresamente",
+    "No describe en todos los casos el vínculo",
+    "Presenta en todos los casos un enlace que permita acceder directamente al texto de la norma o convenio que justifica el vínculo",
+    "Señala de forma expresa que durante el periodo existen vínculos con otras entidades"
+  ],
+  "1": [
+    "Indica en todos los casos el año de la publicación en TA",
+    "Indica en todos los casos el mes de la publicación en TA",
+    "Indica en todos los casos el tipo de norma",
+    "Indica en todos los casos el número de norma",
+    "Presenta en todos los casos la denominación norma",
+    "Indica en todos los casos la fecha Publicación en el Diario Oficial",
+    "Presenta en todos los casos un enlace al texto íntegro y actualizado y éste se encuentra operativo",
+    "Indica en todos los casos la fecha última modificación o derogación",
+    "Indica en todos los casos la fecha promulgación"
+  ]
+}
