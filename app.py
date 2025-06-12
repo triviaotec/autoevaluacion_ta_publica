@@ -57,18 +57,28 @@ def _logo64(p: Path) -> str:
     return f"data:image/{p.suffix.lstrip('.')};base64," \
            f"{base64.b64encode(p.read_bytes()).decode()}"
 
- st.markdown(
-     f"""
- <style>
- #MainMenu, header, footer{{visibility:hidden}}
- #logo{{position:fixed;top:8px;right:18px;z-index:10}}
- </style>
- <div id="logo"><img src="{_logo64(P_LOGO)}" width="140"></div>
- """,
--    unsafe_allow_html=True,
-+    unsafe_allow_html=True,
-+)
+st.set_page_config(
+    page_title="Autoevaluación Transparencia Activa",
+    layout="wide",
+    page_icon=str(P_LOGO) if P_LOGO else None
+)
 
+def _logo64(p: Path) -> str:
+    if not p or not p.exists():
+        return ""
+    return f"data:image/{p.suffix.lstrip('.')};base64," \
+           f"{base64.b64encode(p.read_bytes()).decode()}"
+
+st.markdown(
+    f"""
+<style>
+#MainMenu, header, footer{{visibility:hidden}}
+#logo{{position:fixed;top:8px;right:18px;z-index:10}}
+</style>
+<div id="logo"><img src="{_logo64(P_LOGO)}" width="140"></div>
+""",
+    unsafe_allow_html=True,
+)
 # ──────────────── Carga y orden de la estructura ────────────────────────────
 df = pd.read_json(P_ITEMS)
 
