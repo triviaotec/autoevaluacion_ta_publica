@@ -13,7 +13,8 @@ import pandas as pd
 import streamlit as st
 from docx import Document
 from docx.shared import Pt, Cm, RGBColor
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TABLE_ALIGNMENT
+from docx.enum.text   import WD_ALIGN_PARAGRAPH
+from docx.enum.table  import WD_TABLE_ALIGNMENT
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls, qn
 
