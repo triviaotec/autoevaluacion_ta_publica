@@ -254,7 +254,7 @@ def _tabla(doc: Document, headers: list[str], rows: list[tuple[str, str]]):
     # filas
     for r_i, (k, v) in enumerate(rows, 1):
         tbl.rows[r_i].cells[0].text = str(k)
-        tbl.rows[r_i].cells[1].text = "-" if v is None else f"{v:.1f}"
+        tbl.rows[r_i].cells[1].text = "No aplica" if v is None else f"{v:.1f}"
         tbl.rows[r_i].cells[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
     # bordes
     for row in tbl.rows:
