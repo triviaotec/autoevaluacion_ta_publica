@@ -253,6 +253,7 @@ with c3:
 def _tabla(doc: Document, headers: list[str], rows: list[tuple[str, str]]):
     tbl = doc.add_table(rows=1 + len(rows), cols=len(headers))
     tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
+
     # encabezados
     for i, h in enumerate(headers):
         cell = tbl.rows[0].cells[i]
@@ -264,11 +265,13 @@ def _tabla(doc: Document, headers: list[str], rows: list[tuple[str, str]]):
         cell._tc.get_or_add_tcPr().append(
             parse_xml(f"<w:shd {nsdecls('w')} w:fill='000000'/>")
         )
+
     # filas
-for r_i, (k, v) in enumerate(rows, 1):
+    for r_i, (k, v) in enumerate(rows, 1):
         tbl.rows[r_i].cells[0].text = str(k)
         tbl.rows[r_i].cells[1].text = "No aplica" if v is None else f"{v:.1f}"
         tbl.rows[r_i].cells[1].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+
     # bordes
     for row in tbl.rows:
         for cell in row.cells:
@@ -277,7 +280,8 @@ for r_i, (k, v) in enumerate(rows, 1):
                 if tcPr.find(qn(f"w:{side}")) is None:
                     tcPr.append(
                         parse_xml(
-                            f"<w:{side} w:val=\"single\" w:sz=\"4\" w:color=\"000000\" {nsdecls('w')} />"
+                            f"<w:{side} w:val=\"single\" "
+                            f"w:sz=\"4\" w:color=\"000000\" {nsdecls('w')} />"
                         )
                     )
 
